@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Walimatul Urus - Afiq & Farah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#ffffff;
+    --text:#0b0b0b;
+    --accent:#b8860b; /* gold */
+    --muted:#6b6b6b;
+    --maxwidth:600px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  .container{
+    max-width:var(--maxwidth);
+    margin:24px auto;
+    padding:20px;
+  }
+
+  /* header / hero */
+  .hero{
+    text-align:center;
+    padding:28px;
+    border-radius:14px;
+    box-shadow:0 6px 30px rgba(11,11,11,0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255, 255, 255, 0.95));
+    border:1px solid rgba(0,0,0,0.03);
+  }
+  .title{
+    font-family:'Playfair Display', serif;
+    font-size:28px;
+    letter-spacing:0.6px;
+    margin:0;
+    color:var(--text);
+  }
+  .subtitle{
+    margin:6px 0 0;
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  .video-wrap{
+    position:relative;
+    width:100%;
+    padding-top:177.78%; /* 9:16 vertical ratio */
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:0 8px 30px rgba(11,11,11,0.08);
+    margin-top:16px;
+  }
+  .video-wrap iframe,
+  .video-wrap video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+    object-fit:cover;
+  }
+
+  .divider{
+    height:4px;
+    width:80px;
+    background:linear-gradient(90deg, var(--accent), rgba(184,134,11,0.6));
+    margin:18px auto;
+    border-radius:2px;
+  }
+
+  .countdown{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    margin-top:6px;
+    flex-wrap:wrap;
+  }
+  .cd-item{
+    min-width:76px;
+    padding:12px 10px;
+    border-radius:10px;
+    border:1px solid rgba(11,11,11,0.06);
+    text-align:center;
+    background:#fff;
+  }
+  .cd-num{font-weight:700; font-size:20px;}
+  .cd-label{font-size:12px;color:var(--muted)}
+
+  .card{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(11,11,11,0.04);
+    background:linear-gradient(180deg, #fff, #fff);
+    box-shadow:0 6px 18px rgba(11,11,11,0.03);
+    margin-top:20px;
+  }
+
+  label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+  input[type="text"], input[type="number"], textarea, select{
+    width:100%;
+    padding:10px 12px;
+    border-radius:8px;
+    border:1px solid rgba(11,11,11,0.08);
+    font-size:14px;
+    outline:none;
+  }
+  textarea{min-height:90px;resize:vertical}
+
+  .btn{
+    display:inline-block;
+    background:var(--text);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    border:0;
+    cursor:pointer;
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--text);
+    border:1px solid rgba(11,11,11,0.08);
+  }
+
+  .small{font-size:13px;color:var(--muted)}
+  .messages{margin-top:12px; display:flex;flex-direction:column; gap:10px}
+  .msg{
+    padding:10px;
+    border-radius:10px;
+    border:1px solid rgba(11,11,11,0.04);
+    background:linear-gradient(180deg, #fff, #fff);
+  }
+  .msg .who{font-weight:600}
+  .msg .text{margin-top:6px;color:var(--muted);white-space:pre-wrap}
+
+  footer{margin-top:26px;text-align:center;color:var(--muted);font-size:13px}
+  .accent{color:var(--accent); font-weight:700}
+  .hint{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+</style>
+</head>
+
+
+
+<body>
+<div class="section">
+
+  <!-- Video Section -->
+  <div class="container">
+    <div class="card">
+      <div class="video-wrap" id="videoWrap"></div>
+    </div>
+  </div>
+
+  <!-- Countdown Section -->
+  <div class="container">
+    <div class="hero">
+      <h1 class="title">Walimatul Urus — <span class="accent">Afiq &amp; Farah</span></h1>
+      <p class="subtitle">26 Januari 2026 • Jumaat • 7 Shaban 1447</p>
+      <p class="subtitle">11.00 Pagi - 4.00 Petang</p>
+      <div class="divider"></div>
+      <div id="countdown" class="countdown" style="font-family:'Playfair Display',serif">
+        <div class="cd-item"><div class="cd-num" id="cd-days">0</div><div class="cd-label">Hari</div></div>
+        <div class="cd-item"><div class="cd-num" id="cd-hours">0</div><div class="cd-label">Jam</div></div>
+        <div class="cd-item"><div class="cd-num" id="cd-mins">0</div><div class="cd-label">Minit</div></div>
+        <div class="cd-item"><div class="cd-num" id="cd-secs">0</div><div class="cd-label">Saat</div></div>
+      </div>
+    <div class="hint">Waktu majlis ditetapkan pada <strong id="ceremonyTime">11:00 AM (MYT)</strong></div>
+  </div>
+
+  <!-- RSVP Section -->
+  <div class="card">
+    <h3 style="font-family:'Playfair Display',serif">Sudikah tuan / puan hadir menyeri majlis ini?</h3>
+    <form id="rsvpForm">
+      <label for="r-name">Nama *</label>
+      <input type="text" name="name" placeholder="" required>
+      <label for="r-attend">Kehadiran *</label>
+      <select name="attend" required>
+        <option value="">Sila pilih...</option>
+        <option value="Yes">Hadir</option>
+        <option value="No">Tidak hadir</option>
+      </select>
+      <label for="r-count">Jumlah tetamu</label>
+      <input type="number" name="count" placeholder="" value="1" min="1">
+      <label for="r-note">Catatan (jika berkaitan)</label>
+      <textarea name="note" placeholder=""></textarea>
+      <button class="btn" type="submit">Sahkan</button>
+    </form>
+    <div id="rsvpMsg" class="small"></div>
+  </div>
+
+  <!-- Guestbook Section -->
+  <div class="card">
+    <h3 style="font-family:'Playfair Display',serif">Buku Tetamu • Guestbook</h3>
+    <form id="guestForm">
+      <label for="g-name">Nama</label>
+      <input type="text" name="name" placeholder="" required>
+      <label for="g-message">Ucapan *</label>
+      <textarea name="message" placeholder="" required></textarea>
+      <button class="btn" type="submit">Hantar</button>
+    </form>
+    <div id="guestMsg" class="small"></div>
+  </div>
+
+  <!-- Location Section -->
+  <div class="card" id="location" style="text-align:center">
+    <h3 style="font-family:'Playfair Display',serif">Lokasi</h3>
+    <div class="small">Masjid Seri Sendayan, Persiaran Idaman Villa, Bandar</div>
+    <div class="small">Sri Sendayan, 71950 Siliau, Negeri Sembilan</div>
+    <iframe src="https://www.google.com/maps?q=Masjid%20Seri%20Sendayan&output=embed" width="100%" height="300" style="border-radius:12px;border:0;margin-top:12px" allowfullscreen></iframe>
+  </div>
+
+  <!-- Money Gift Section -->
+  <div class="card" style="text-align:center">
+    <h3 style="font-family:'Playfair Display',serif">Salam Kaut</h3>
+    <div class="small">Kehadiranmu adalah hadiah terindah, namun andai ingin memberi tanda kasih 💝</div>
+    <img src="qr_maybank.png" alt="QR Code" style="max-width:200px;margin:16px auto;display:block">
+    <div class="small">Imbas kod QR untuk titipan ikhlasmu</div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Afiq & Farah | Walimatul Urus</p>
+</footer>
+
+<script>
+
+  // Countdown
+  const ceremonyDate = "2026-01-26T11:00:00+08:00";
+  const youtubeUrl = "https://www.youtube.com/watch?v=K4xLi8IF1FM";
+  const localVideo = false;
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const vwrap = document.getElementById('videoWrap');
+    if (youtubeUrl && !localVideo) {
+      const idMatch = youtubeUrl.match(/[?&]v=([^&]+)/) || youtubeUrl.match(/youtu\.be\/([^?&]+)/);
+      const vid = idMatch ? idMatch[1] : null;
+      const iframe = document.createElement('iframe');
+      iframe.src = vid ? `https://www.youtube.com/embed/${vid}` : youtubeUrl;
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      vwrap.appendChild(iframe);
+    } else {
+      const vid = document.createElement('video');
+      vid.setAttribute('playsinline','');
+      vid.setAttribute('muted','');
+      vid.setAttribute('autoplay','');
+      vid.setAttribute('loop','');
+      vid.innerHTML = '<source src="hero.mp4" type="video/mp4">';
+      vwrap.appendChild(vid);
+    }
+
+    const target = new Date(ceremonyDate);
+    document.getElementById('ceremonyTime').textContent = target.toLocaleString('en-GB', {dateStyle:'medium', timeStyle:'short', timeZone:'Asia/Kuala_Lumpur'});
+    function updateCountdown(){
+      const now = new Date();
+      const diff = target - now;
+      if(diff <= 0){return;}
+      const s = Math.floor(diff/1000);
+      const days = Math.floor(s / 86400);
+      const hours = Math.floor((s % 86400) / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      const secs = s % 60;
+      document.getElementById('cd-days').textContent = days;
+      document.getElementById('cd-hours').textContent = hours;
+      document.getElementById('cd-mins').textContent = mins;
+      document.getElementById('cd-secs').textContent = secs;
+    }
+    setInterval(updateCountdown,1000);
+  });
+ 
+
+  // Backend URL (replace with your Apps Script /exec URL)
+  const BACKEND_ENDPOINT = "https://script.google.com/macros/s/AKfycby7w18iue22F6X6jofMFD1d5A6q6HiYLEr6wmOMvw84fDyRotrj5W5z3rbOFwx6aQl5/exec";
+
+  // RSVP
+  document.getElementById("rsvpForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+      type:"rsvp",
+      payload:{
+        name: form.name.value,
+        attend: form.attend.value,
+        count: form.count.value,
+        note: form.note.value,
+        ceremony: "Walimatul Urus Afiq & Farah"
+      }
+    };
+    try {
+      await fetch(BACKEND_ENDPOINT, {
+        method:"POST",
+        body: JSON.stringify(data),
+        mode:"no-cors",
+        headers:{ "Content-Type":"application/json" }
+      });
+      document.getElementById("rsvpMsg").innerText = "Terima kasih! Kehadiran telah disahkan.";
+      form.reset();
+    } catch(err){
+      document.getElementById("rsvpMsg").innerText = "Maaf, kehadiran tidak dapat disahkan.";
+    }
+  });
+
+  // Guestbook
+  document.getElementById("guestForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+      type:"guest",
+      payload:{
+        name: form.name.value,
+        message: form.message.value,
+        ceremony: "Walimatul Urus Afiq & Farah"
+      }
+    };
+    try {
+      await fetch(BACKEND_ENDPOINT, {
+        method:"POST",
+        body: JSON.stringify(data),
+        mode:"no-cors",
+        headers:{ "Content-Type":"application/json" }
+      });
+      document.getElementById("guestMsg").innerText = "Terima kasih atas titipan doa dan harapanmu!";
+      form.reset();
+    } catch(err){
+      document.getElementById("guestMsg").innerText = "Maaf, ucapan tidak berjaya dihantar.";
+    }
+  });
+</script>
+</body>
+</html>
