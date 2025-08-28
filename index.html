@@ -1,343 +1,336 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Walimatul Urus - Afiq & Farah</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afiq &amp; Farah — 6 Feb 2026</title>
+  <meta name="description" content="Digital wedding invitation for Afiq & Farah — 6 February 2026 at Masjid Sri Sendayan" />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #0f0f0f;
+      --muted: #6b7280; /* gray-500 */
+      --gold: #d4af37; /* metallic gold */
+      --gold-700: #b48f19;
+      --black: #000000;
+      --ring: rgba(212,175,55,0.35);
+    }
+    html, body{
+      margin:0; padding:0; background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
 
-<style>
-  :root{
-    --bg:#ffffff;
-    --text:#0b0b0b;
-    --accent:#b8860b; /* gold */
-    --muted:#6b6b6b;
-    --maxwidth:600px;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
-    background:var(--bg);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.45;
-  }
+    /* Layout */
+    .wrap{ max-width: 720px; margin: 0 auto; padding: 24px 16px 112px; }
+    header{ text-align:center; margin: 8px 0 16px; }
+    .mono{ font-feature-settings: "tnum" 1, "lnum" 1; font-variant-numeric: tabular-nums lining-nums; }
 
-  .container{
-    max-width:var(--maxwidth);
-    margin:24px auto;
-    padding:20px;
-  }
+    /* Title styling */
+    .names{ font-size: clamp(28px, 6vw, 48px); font-weight: 700; letter-spacing: 0.5px; }
+    .amp{ color: var(--gold); font-weight: 800; padding: 0 6px; }
+    .meta{ color: var(--muted); margin-top: 4px; font-size: 14px; }
 
-  /* header / hero */
-  .hero{
-    text-align:center;
-    padding:28px;
-    border-radius:14px;
-    box-shadow:0 6px 30px rgba(11,11,11,0.06);
-    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255, 255, 255, 0.95));
-    border:1px solid rgba(0,0,0,0.03);
-  }
-  .title{
-    font-family:'Playfair Display', serif;
-    font-size:28px;
-    letter-spacing:0.6px;
-    margin:0;
-    color:var(--text);
-  }
-  .subtitle{
-    margin:6px 0 0;
-    font-size:14px;
-    color:var(--muted);
-  }
+    /* Countdown */
+    .card{ background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 20px; padding: 16px; box-shadow: 0 2px 20px rgba(0,0,0,.05); }
+    .countdown{ display:flex; gap: 10px; justify-content:center; align-items:center; padding: 10px 0 4px; }
+    .timebox{ flex: 1 1 auto; text-align:center; padding: 10px 8px; border:1px solid rgba(0,0,0,.06); border-radius: 16px; }
+    .timebox .num{ font-size: clamp(18px, 6vw, 32px); font-weight: 800; }
+    .timebox .lbl{ font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color:var(--muted); margin-top:2px; }
+    .countdown-note{ text-align:center; font-size: 12px; color: var(--muted); margin-top: 6px; }
 
-  .video-wrap{
-    position:relative;
-    width:100%;
-    padding-top:177.78%; /* 9:16 vertical ratio */
-    overflow:hidden;
-    border-radius:12px;
-    box-shadow:0 8px 30px rgba(11,11,11,0.08);
-    margin-top:16px;
-  }
-  .video-wrap iframe,
-  .video-wrap video{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    border:0;
-    object-fit:cover;
-  }
+    /* Video */
+    .video-frame{ margin: 18px auto; width: 100%; max-width: 420px; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    .video-frame video{ width: 100%; height: 100%; display:block; object-fit: cover; background:#000; }
 
-  .divider{
-    height:4px;
-    width:80px;
-    background:linear-gradient(90deg, var(--accent), rgba(184,134,11,0.6));
-    margin:18px auto;
-    border-radius:2px;
-  }
+    /* Sticky bottom bar */
+    .bar{ position: fixed; left: 0; right: 0; bottom: 0; backdrop-filter: blur(8px); background: rgba(255,255,255,.92); border-top: 2px solid var(--gold);
+           box-shadow: 0 -6px 20px rgba(0,0,0,.06); }
+    .bar-inner{ max-width: 720px; margin: 0 auto; display:grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 10px 12px; }
+    .bar button{ appearance:none; border:1px solid rgba(0,0,0,.08); border-radius: 16px; padding: 10px 8px; font-weight:700; background:#fff; cursor:pointer; transition: transform .06s ease, box-shadow .15s ease; }
+    .bar button:active{ transform: translateY(1px); }
+    .bar button:focus{ outline: none; box-shadow: 0 0 0 4px var(--ring); }
+    .bar .gold{ border-color: var(--gold); }
 
-  .countdown{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    margin-top:6px;
-    flex-wrap:wrap;
-  }
-  .cd-item{
-    min-width:76px;
-    padding:12px 10px;
-    border-radius:10px;
-    border:1px solid rgba(11,11,11,0.06);
-    text-align:center;
-    background:#fff;
-  }
-  .cd-num{font-weight:700; font-size:20px;}
-  .cd-label{font-size:12px;color:var(--muted)}
+    /* Modals */
+    .modal{ position: fixed; inset: 0; display:none; align-items: center; justify-content: center; z-index: 50; }
+    .modal.open{ display:flex; }
+    .backdrop{ position: absolute; inset: 0; background: rgba(0,0,0,.45); }
+    .sheet{ position: relative; z-index: 10; width: min(680px, 94vw); max-height: 86vh; overflow:auto; background: #fff; border-radius: 22px; border: 1.5px solid var(--gold); box-shadow: 0 20px 60px rgba(0,0,0,.28); }
+    .sheet header{ display:flex; align-items:center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,.06); }
+    .sheet header h3{ margin:0; font-size:18px; }
+    .sheet .content{ padding: 14px 16px 18px; }
+    .xbtn{ appearance:none; border:1px solid rgba(0,0,0,.08); background:#fff; border-radius: 12px; padding: 6px 10px; cursor:pointer; }
 
-  .card{
-    padding:14px;
-    border-radius:12px;
-    border:1px solid rgba(11,11,11,0.04);
-    background:linear-gradient(180deg, #fff, #fff);
-    box-shadow:0 6px 18px rgba(11,11,11,0.03);
-    margin-top:20px;
-  }
+    /* Forms */
+    form{ display:grid; gap: 12px; }
+    label{ font-size: 13px; font-weight: 700; }
+    input[type="text"], input[type="number"], select, textarea{
+      width: 100%; padding: 10px 12px; border-radius: 14px; border:1px solid rgba(0,0,0,.12); background:#fff; font-size: 14px;
+    }
+    textarea{ min-height: 90px; resize: vertical; }
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn{ appearance:none; border: 1.5px solid var(--gold); background: var(--black); color:#fff; border-radius: 14px; padding: 12px 14px; font-weight:800; cursor:pointer; }
+    .btn:disabled{ opacity: .6; cursor: not-allowed; }
+    .btn.alt{ background:#fff; color: var(--black); }
 
-  label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
-  input[type="text"], input[type="number"], textarea, select{
-    width:100%;
-    padding:10px 12px;
-    border-radius:8px;
-    border:1px solid rgba(11,11,11,0.08);
-    font-size:14px;
-    outline:none;
-  }
-  textarea{min-height:90px;resize:vertical}
+    /* Invitation block */
+    .invitation p{ margin: 0 0 10px; line-height: 1.6; }
+    .lead{ font-weight: 600; }
 
-  .btn{
-    display:inline-block;
-    background:var(--text);
-    color:#fff;
-    padding:10px 16px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:600;
-    border:0;
-    cursor:pointer;
-  }
-  .btn-ghost{
-    background:transparent;
-    color:var(--text);
-    border:1px solid rgba(11,11,11,0.08);
-  }
+    /* Map */
+    .map{ width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 16px; overflow:hidden; }
 
-  .small{font-size:13px;color:var(--muted)}
-  .messages{margin-top:12px; display:flex;flex-direction:column; gap:10px}
-  .msg{
-    padding:10px;
-    border-radius:10px;
-    border:1px solid rgba(11,11,11,0.04);
-    background:linear-gradient(180deg, #fff, #fff);
-  }
-  .msg .who{font-weight:600}
-  .msg .text{margin-top:6px;color:var(--muted);white-space:pre-wrap}
+    /* Toast */
+    .toast{ position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); background:#111; color:#fff; border-radius: 16px; padding: 10px 14px; font-size: 14px; opacity:0; pointer-events:none; transition: opacity .2s ease; }
+    .toast.show{ opacity: 1; }
 
-  footer{margin-top:26px;text-align:center;color:var(--muted);font-size:13px}
-  .accent{color:var(--accent); font-weight:700}
-  .hint{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
-</style>
+    /* Accent divider */
+    .rule{ height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); border:0; margin: 18px 0; }
+
+    /* Accessibility helpers */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+  </style>
 </head>
-
-
-
 <body>
-<div class="section">
+  <div class="wrap">
+    <header aria-label="Couple & Event details">
+      <div class="names">Afiq <span class="amp">&amp;</span> Farah</div>
+      <div class="meta">6 February 2026 • 11:00 AM • Masjid Sri Sendayan</div>
+      <div class="meta" style="margin-top:6px"><span style="padding:4px 10px; border:1px solid var(--gold); border-radius: 999px; font-weight:700;">Theme: White • Black • <span style="color:var(--gold)">Gold</span></span></div>
+    </header>
 
-  <!-- Video Section -->
-  <div class="container">
-    <div class="card">
-      <div class="video-wrap" id="videoWrap"></div>
+    <section class="card" aria-label="Countdown to event">
+      <div id="countdown" class="countdown" role="timer" aria-live="polite">
+        <div class="timebox"><div class="num mono" id="cd-days">–</div><div class="lbl">Days</div></div>
+        <div class="timebox"><div class="num mono" id="cd-hours">–</div><div class="lbl">Hours</div></div>
+        <div class="timebox"><div class="num mono" id="cd-mins">–</div><div class="lbl">Minutes</div></div>
+        <div class="timebox"><div class="num mono" id="cd-secs">–</div><div class="lbl">Seconds</div></div>
+      </div>
+      <div id="countdown-note" class="countdown-note"></div>
+    </section>
+
+    <div class="video-frame" aria-label="Invitation video">
+      <!-- Replace the src with your vertical MP4. Keep controls for accessibility. -->
+      <video id="video" controls playsinline preload="metadata" poster="" src="weddingfarafiq.mp4"></video>
+    </div>
+
+    <hr class="rule" />
+
+    <section class="card" aria-label="Event quick info">
+      <p style="margin:0; text-align:center">We can't wait to celebrate with you. Tap the buttons below for <strong>Invitation</strong>, <strong>RSVP</strong>, <strong>Guestbook</strong>, and <strong>Location</strong>.</p>
+    </section>
+  </div>
+
+  <!-- Sticky horizontal bar with popup triggers -->
+  <nav class="bar" aria-label="Quick actions">
+    <div class="bar-inner">
+      <button class="gold" data-modal="invitation">Invitation</button>
+      <button class="gold" data-modal="rsvp">RSVP</button>
+      <button class="gold" data-modal="guestbook">Guestbook</button>
+      <button class="gold" data-modal="location">Location</button>
+    </div>
+  </nav>
+
+  <!-- Invitation Modal -->
+  <div id="modal-invitation" class="modal" role="dialog" aria-modal="true" aria-labelledby="invitation-title">
+    <div class="backdrop" data-close></div>
+    <div class="sheet">
+      <header>
+        <h3 id="invitation-title">Invitation</h3>
+        <button class="xbtn" data-close aria-label="Close">✕</button>
+      </header>
+      <div class="content">
+        <div class="invitation">
+          <p class="lead">Assalamualaikum &amp; warm greetings,</p>
+          <p>With joy, we invite you to the wedding of <strong>Afiq</strong> and <strong>Farah</strong> on <strong>Friday, 6 February 2026</strong> at <strong>11:00 AM</strong> at <strong>Masjid Sri Sendayan</strong>.</p>
+          <p>We would be honored by your presence and prayers. Kindly RSVP at your convenience.</p>
+          <p class="mono" style="margin-top:12px"><strong>Dress theme:</strong> White · Black · Gold</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Countdown Section -->
-  <div class="container">
-    <div class="hero">
-      <h1 class="title">Walimatul Urus — <span class="accent">Afiq &amp; Farah</span></h1>
-      <p class="subtitle">26 Januari 2026 • Jumaat • 7 Shaban 1447</p>
-      <p class="subtitle">11.00 Pagi - 4.00 Petang</p>
-      <div class="divider"></div>
-      <div id="countdown" class="countdown" style="font-family:'Playfair Display',serif">
-        <div class="cd-item"><div class="cd-num" id="cd-days">0</div><div class="cd-label">Hari</div></div>
-        <div class="cd-item"><div class="cd-num" id="cd-hours">0</div><div class="cd-label">Jam</div></div>
-        <div class="cd-item"><div class="cd-num" id="cd-mins">0</div><div class="cd-label">Minit</div></div>
-        <div class="cd-item"><div class="cd-num" id="cd-secs">0</div><div class="cd-label">Saat</div></div>
+  <!-- RSVP Modal -->
+  <div id="modal-rsvp" class="modal" role="dialog" aria-modal="true" aria-labelledby="rsvp-title">
+    <div class="backdrop" data-close></div>
+    <div class="sheet">
+      <header>
+        <h3 id="rsvp-title">RSVP</h3>
+        <button class="xbtn" data-close aria-label="Close">✕</button>
+      </header>
+      <div class="content">
+        <form id="rsvpForm">
+          <input type="hidden" name="type" value="rsvp" />
+          <div>
+            <label for="rsvp-name">Full name *</label>
+            <input id="rsvp-name" name="name" type="text" required placeholder="e.g. Nur Aliyah" />
+          </div>
+          <div class="row">
+            <div>
+              <label for="rsvp-attendance">Attendance *</label>
+              <select id="rsvp-attendance" name="attendance" required>
+                <option value="">Please select</option>
+                <option value="Attending">Attending</option>
+                <option value="Not attending">Not attending</option>
+              </select>
+            </div>
+            <div>
+              <label for="rsvp-guests"># of guests</label>
+              <input id="rsvp-guests" name="guests" type="number" min="0" inputmode="numeric" placeholder="e.g. 2" />
+            </div>
+          </div>
+          <div>
+            <label for="rsvp-message">Notes</label>
+            <textarea id="rsvp-message" name="message" placeholder="Allergies, wishes, etc."></textarea>
+          </div>
+          <button class="btn" id="rsvpSubmit" type="submit">Send RSVP</button>
+        </form>
       </div>
-    <div class="hint">Waktu majlis ditetapkan pada <strong id="ceremonyTime">11:00 AM (MYT)</strong></div>
+    </div>
   </div>
 
-  <!-- RSVP Section -->
-  <div class="card">
-    <h3 style="font-family:'Playfair Display',serif">Sudikah tuan / puan hadir menyeri majlis ini?</h3>
-    <form id="rsvpForm">
-      <label for="r-name">Nama *</label>
-      <input type="text" name="name" placeholder="" required>
-      <label for="r-attend">Kehadiran *</label>
-      <select name="attend" required>
-        <option value="">Sila pilih...</option>
-        <option value="Yes">Hadir</option>
-        <option value="No">Tidak hadir</option>
-      </select>
-      <label for="r-count">Jumlah tetamu</label>
-      <input type="number" name="count" placeholder="" value="1" min="1">
-      <label for="r-note">Catatan (jika berkaitan)</label>
-      <textarea name="note" placeholder=""></textarea>
-      <button class="btn" type="submit">Sahkan</button>
-    </form>
-    <div id="rsvpMsg" class="small"></div>
+  <!-- Guestbook Modal -->
+  <div id="modal-guestbook" class="modal" role="dialog" aria-modal="true" aria-labelledby="guestbook-title">
+    <div class="backdrop" data-close></div>
+    <div class="sheet">
+      <header>
+        <h3 id="guestbook-title">Guestbook</h3>
+        <button class="xbtn" data-close aria-label="Close">✕</button>
+      </header>
+      <div class="content">
+        <form id="guestbookForm">
+          <input type="hidden" name="type" value="guestbook" />
+          <div>
+            <label for="gb-name">Your name *</label>
+            <input id="gb-name" name="name" type="text" required placeholder="e.g. Hafiz" />
+          </div>
+          <div>
+            <label for="gb-message">Message *</label>
+            <textarea id="gb-message" name="message" required placeholder="Write your wishes…"></textarea>
+          </div>
+          <button class="btn" id="guestbookSubmit" type="submit">Sign Guestbook</button>
+        </form>
+      </div>
+    </div>
   </div>
 
-  <!-- Guestbook Section -->
-  <div class="card">
-    <h3 style="font-family:'Playfair Display',serif">Buku Tetamu • Guestbook</h3>
-    <form id="guestForm">
-      <label for="g-name">Nama</label>
-      <input type="text" name="name" placeholder="" required>
-      <label for="g-message">Ucapan *</label>
-      <textarea name="message" placeholder="" required></textarea>
-      <button class="btn" type="submit">Hantar</button>
-    </form>
-    <div id="guestMsg" class="small"></div>
+  <!-- Location Modal -->
+  <div id="modal-location" class="modal" role="dialog" aria-modal="true" aria-labelledby="location-title">
+    <div class="backdrop" data-close></div>
+    <div class="sheet">
+      <header>
+        <h3 id="location-title">Location — Masjid Sri Sendayan</h3>
+        <button class="xbtn" data-close aria-label="Close">✕</button>
+      </header>
+      <div class="content">
+        <p class="mono" style="margin-top:0">Masjid Sri Sendayan</p>
+        <iframe class="map" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=Masjid+Sri+Sendayan&output=embed"></iframe>
+        <div style="display:flex; gap:10px; margin-top:12px;">
+          <a class="btn alt" target="_blank" rel="noopener" href="https://maps.google.com/?q=Masjid+Sri+Sendayan">Open in Google Maps</a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Location Section -->
-  <div class="card" id="location" style="text-align:center">
-    <h3 style="font-family:'Playfair Display',serif">Lokasi</h3>
-    <div class="small">Masjid Seri Sendayan, Persiaran Idaman Villa, Bandar</div>
-    <div class="small">Sri Sendayan, 71950 Siliau, Negeri Sembilan</div>
-    <iframe src="https://www.google.com/maps?q=Masjid%20Seri%20Sendayan&output=embed" width="100%" height="300" style="border-radius:12px;border:0;margin-top:12px" allowfullscreen></iframe>
-  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <!-- Money Gift Section -->
-  <div class="card" style="text-align:center">
-    <h3 style="font-family:'Playfair Display',serif">Salam Kaut</h3>
-    <div class="small">Kehadiranmu adalah hadiah terindah, namun andai ingin memberi tanda kasih 💝</div>
-    <img src="qr_maybank.png" alt="QR Code" style="max-width:200px;margin:16px auto;display:block">
-    <div class="small">Imbas kod QR untuk titipan ikhlasmu</div>
-  </div>
+  <script>
+    // ===== CONFIG: Replace these with your Google Apps Script Web App URLs =====
+    const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwJ5fA-5pUZeHJd8MCwME-OzAAME5ppWkj_E4N5rJI6KtMsExrgIi2XbOy2O8wfflnTZQ/exec';
+    const GUESTBOOK_ENDPOINT = RSVP_ENDPOINT; // Use same endpoint; script routes by `type`
 
-</div>
+    // ===== Countdown (locked to Malaysia time, UTC+8) =====
+    const EVENT_TIME = new Date('2026-02-06T11:00:00+08:00');
+    const $days = document.getElementById('cd-days');
+    const $hours = document.getElementById('cd-hours');
+    const $mins = document.getElementById('cd-mins');
+    const $secs = document.getElementById('cd-secs');
+    const $note = document.getElementById('countdown-note');
 
-<footer>
-  <p>© 2026 Afiq & Farah | Walimatul Urus</p>
-</footer>
-
-<script>
-
-  // Countdown
-  const ceremonyDate = "2026-01-26T11:00:00+08:00";
-  const youtubeUrl = "https://www.youtube.com/watch?v=K4xLi8IF1FM";
-  const localVideo = false;
-
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const vwrap = document.getElementById('videoWrap');
-    if (youtubeUrl && !localVideo) {
-      const idMatch = youtubeUrl.match(/[?&]v=([^&]+)/) || youtubeUrl.match(/youtu\.be\/([^?&]+)/);
-      const vid = idMatch ? idMatch[1] : null;
-      const iframe = document.createElement('iframe');
-      iframe.src = vid ? `https://www.youtube.com/embed/${vid}` : youtubeUrl;
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-      vwrap.appendChild(iframe);
-    } else {
-      const vid = document.createElement('video');
-      vid.setAttribute('playsinline','');
-      vid.setAttribute('muted','');
-      vid.setAttribute('autoplay','');
-      vid.setAttribute('loop','');
-      vid.innerHTML = '<source src="hero.mp4" type="video/mp4">';
-      vwrap.appendChild(vid);
-    }
-
-    const target = new Date(ceremonyDate);
-    document.getElementById('ceremonyTime').textContent = target.toLocaleString('en-GB', {dateStyle:'medium', timeStyle:'short', timeZone:'Asia/Kuala_Lumpur'});
-    function updateCountdown(){
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
       const now = new Date();
-      const diff = target - now;
-      if(diff <= 0){return;}
-      const s = Math.floor(diff/1000);
-      const days = Math.floor(s / 86400);
-      const hours = Math.floor((s % 86400) / 3600);
-      const mins = Math.floor((s % 3600) / 60);
-      const secs = s % 60;
-      document.getElementById('cd-days').textContent = days;
-      document.getElementById('cd-hours').textContent = hours;
-      document.getElementById('cd-mins').textContent = mins;
-      document.getElementById('cd-secs').textContent = secs;
+      const diff = Math.max(0, EVENT_TIME - now);
+      const s = Math.floor(diff / 1000);
+      const d = Math.floor(s / 86400);
+      const h = Math.floor((s % 86400) / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+      $days.textContent = d; $hours.textContent = pad(h); $mins.textContent = pad(m); $secs.textContent = pad(sec);
+      if(diff === 0){ $note.textContent = "It's time!"; }
+      else if (diff < 3600 * 1000){ $note.textContent = 'Starting soon'; }
+      else { $note.textContent = '' }
     }
-    setInterval(updateCountdown,1000);
-  });
- 
+    tick(); setInterval(tick, 1000);
 
-  // Backend URL (replace with your Apps Script /exec URL)
-  const BACKEND_ENDPOINT = "https://script.google.com/macros/s/AKfycby7w18iue22F6X6jofMFD1d5A6q6HiYLEr6wmOMvw84fDyRotrj5W5z3rbOFwx6aQl5/exec";
+    // ===== Modal logic =====
+    const openModal = (id) => document.getElementById('modal-' + id).classList.add('open');
+    const closeModal = (el) => el.closest('.modal').classList.remove('open');
 
-  // RSVP
-  document.getElementById("rsvpForm").addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const form = e.target;
-    const data = {
-      type:"rsvp",
-      payload:{
-        name: form.name.value,
-        attend: form.attend.value,
-        count: form.count.value,
-        note: form.note.value,
-        ceremony: "Walimatul Urus Afiq & Farah"
-      }
+    document.querySelectorAll('.bar [data-modal]').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.modal));
+    });
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', (e) => closeModal(e.target));
+    });
+
+    // Close on Escape
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));
+    });
+
+    // ===== Toast helper =====
+    const toast = (msg) => {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(()=> t.classList.remove('show'), 2400);
     };
-    try {
-      await fetch(BACKEND_ENDPOINT, {
-        method:"POST",
-        body: JSON.stringify(data),
-        mode:"no-cors",
-        headers:{ "Content-Type":"application/json" }
-      });
-      document.getElementById("rsvpMsg").innerText = "Terima kasih! Kehadiran telah disahkan.";
-      form.reset();
-    } catch(err){
-      document.getElementById("rsvpMsg").innerText = "Maaf, kehadiran tidak dapat disahkan.";
-    }
-  });
 
-  // Guestbook
-  document.getElementById("guestForm").addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const form = e.target;
-    const data = {
-      type:"guest",
-      payload:{
-        name: form.name.value,
-        message: form.message.value,
-        ceremony: "Walimatul Urus Afiq & Farah"
+    // ===== Form submission (POST form-urlencoded to avoid CORS preflight) =====
+    async function postForm(endpoint, data, button){
+      if(!endpoint || endpoint.includes('PASTE_YOUR_DEPLOYMENT_ID_HERE')){
+        toast('Configure your Apps Script endpoint first.');
+        return;
       }
-    };
-    try {
-      await fetch(BACKEND_ENDPOINT, {
-        method:"POST",
-        body: JSON.stringify(data),
-        mode:"no-cors",
-        headers:{ "Content-Type":"application/json" }
-      });
-      document.getElementById("guestMsg").innerText = "Terima kasih atas titipan doa dan harapanmu!";
-      form.reset();
-    } catch(err){
-      document.getElementById("guestMsg").innerText = "Maaf, ucapan tidak berjaya dihantar.";
+      try{
+        button.disabled = true; button.textContent = 'Sending…';
+        const body = new URLSearchParams(data);
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body
+        });
+        // Apps Script often returns 200 with JSON; treat opaque as success when CORS is relaxed.
+        if(!res.ok){ throw new Error('HTTP ' + res.status); }
+        toast('Thank you! Saved.');
+      }catch(err){
+        console.error(err);
+        toast('Error: Failed to send. Please try again.');
+      }finally{
+        button.disabled = false; button.textContent = button.id === 'rsvpSubmit' ? 'Send RSVP' : 'Sign Guestbook';
+      }
     }
-  });
-</script>
+
+    // RSVP handler
+    document.getElementById('rsvpForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.currentTarget);
+      const data = Object.fromEntries(fd.entries());
+      data.timestamp = new Date().toISOString();
+      postForm(RSVP_ENDPOINT, data, document.getElementById('rsvpSubmit'));
+      e.currentTarget.reset();
+    });
+
+    // Guestbook handler
+    document.getElementById('guestbookForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.currentTarget);
+      const data = Object.fromEntries(fd.entries());
+      data.timestamp = new Date().toISOString();
+      postForm(GUESTBOOK_ENDPOINT, data, document.getElementById('guestbookSubmit'));
+      e.currentTarget.reset();
+    });
+  </script>
 </body>
 </html>
