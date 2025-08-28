@@ -11,7 +11,7 @@
     {
       --bg:#ffffff;
       --fg:#111111;
-      --gold:#FF0000;
+      --gold:#D4AF37;
       --muted:#666;
       --panel:#f7f7f8;
       --overlay: rgba(0,0,0,.6);
@@ -263,26 +263,20 @@
       <div class="container">
       <button class="close-x" data-close aria-label="Close">×</button>
       <h2>RSVP</h2>
-      <form id="rsvpForm">
-        <div class="form-group">
-          <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
-        </div>
-        <div class="form-group">
-          <select id="attendance" name="attendance" class="form-control" required>
-            <option value="">-- Will you attend? --</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
+      <form id="form-rsvp">
+        <input type="text" name="name" placeholder="Your name" required />
+        <div class="row">
+          <select name="attending" required>
+            <option value="" disabled selected>Will you attend?</option>
+            <option>Yes</option>
+            <option>No</option>
           </select>
+          <input type="number" name="guests" min="0" max="10" placeholder="No. of guests" />
         </div>
-        <div class="form-group">
-          <input type="number" id="guest_count" name="guest_count" class="form-control" placeholder="Number of Guests">
-        </div>
-        <div class="form-group">
-          <textarea id="message" name="message" class="form-control" placeholder="Your Message"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit RSVP</button>
+        <textarea name="message" placeholder="Message (optional)"></textarea>
+        <button class="btn btn-primary" type="submit">Send RSVP</button>
+        <div class="hint" id="rsvpStatus"></div>
       </form>
-
 
       <div class="admin-bar" id="rsvpAdmin">
         <button class="btn btn-ghost" id="clearRSVP">Clear RSVP (Admin)</button>
@@ -346,9 +340,9 @@
 
   <script>
     // ====== CONFIG ======
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbzdVCL0HT568P5YvvOn1JKpipfPK2mFJqDGmZ5dYbfHKkE21BodDgBOYjhJ_Se2BWOhwA/exec'; // <-- replace with your /exec URL
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbxzhC64jbecWE2kxiyWh8xe43W-LEDLVNRd0RzsSbhvbQi8DnOiAVwuxHJMlfL4JnFXbQ/exec'; // <-- replace with your /exec URL
     const EVENT_ISO = '2026-02-06T11:00:00+08:00'; // Malaysia time
-    
+
     // ====== UTIL ======
     const $ = (q,root=document)=>root.querySelector(q);
     const $$= (q,root=document)=>Array.from(root.querySelectorAll(q));
@@ -636,50 +630,6 @@
         });
       }
     });
-
-      // Replace this with your Apps Script Web App URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbzdVCL0HT568P5YvvOn1JKpipfPK2mFJqDGmZ5dYbfHKkE21BodDgBOYjhJ_Se2BWOhwA/exec";
-    
-      document.getElementById("rsvpForm").addEventListener("submit", e => {
-        e.preventDefault();
-    
-        const formData = {
-          name: document.getElementById("name").value,
-          attendance: document.getElementById("attendance").value,
-          guest_count: document.getElementById("guest_count").value,
-          message: document.getElementById("message").value
-        };
-    
-        fetch(scriptURL, {
-          method: "POST",
-          mode: "cors",   // keep cors mode
-          body: JSON.stringify(formData),
-          headers: { "Content-Type": "application/json" }
-        })
-        .then(response => response.json())
-        .then(result => {
-          alert("RSVP submitted successfully!");
-          document.getElementById("rsvpForm").reset();
-        })
-        .catch(error => {
-          console.error("Error!", error);
-          alert("Something went wrong. Please try again.");
-        });
-      });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
