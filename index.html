@@ -1,0 +1,483 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Walimatul Urus — Afiq & Farah</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #FFF7D6;           /* light yellow */
+    --white: #ffffff;
+    --black: #111111;
+    --gold: #C9A227;         /* elegant gold */
+    --gold-soft: #E3C766;
+    --overlay: rgba(0,0,0,.5);
+    --radius: 20px;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0; background: var(--bg); color: var(--black);
+    font-family: Inter, system-ui, Arial, sans-serif; line-height:1.6;
+  }
+  /* Hero Video */
+  .hero{
+    position: relative; width:100%; max-width:900px; margin:0 auto;
+    aspect-ratio: 9/16; background:#000; overflow:hidden; border-bottom-left-radius: var(--radius); border-bottom-right-radius: var(--radius);
+  }
+  .hero video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  .controls{
+    position:absolute; left:0; right:0; bottom:0; padding:12px; display:flex; gap:8px; justify-content:center;
+  }
+  .ctrl-btn{
+    border:none; background:var(--overlay); color:#fff; padding:10px 14px; backdrop-filter: blur(4px);
+    border-radius:999px; cursor:pointer; font-weight:600;
+  }
+  .ctrl-btn:hover{ background:rgba(0,0,0,.65); }
+  /* Title */
+  .wrap{ max-width:900px; margin:18px auto 40px; padding:0 16px; }
+  h1,h2,h3{ margin:8px 0; }
+  h1{
+    font-family: "Playfair Display", serif; font-size: clamp(36px, 7vw, 56px); text-align:center;
+    letter-spacing:.5px; color: var(--gold);
+  }
+  h2{ font-size: clamp(20px, 3.2vw, 28px); text-align:center; font-weight:700; color:var(--black); }
+  h3{ font-size: clamp(16px, 2.8vw, 20px); text-align:center; font-weight:600; color:var(--black); opacity:.9; }
+  .meta{ text-align:center; opacity:.9; }
+
+  /* Countdown */
+  .countdown{
+    margin:18px auto 22px; background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding:14px; max-width:760px;
+  }
+  .cd-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;
+  }
+  .cd-item{
+    background: linear-gradient(180deg, #fff, #fff9ef); border: 1px solid var(--gold-soft);
+    border-radius: 16px; padding:14px; text-align:center;
+  }
+  .cd-value{
+    font-family: "Playfair Display", serif; font-size: clamp(28px, 6vw, 42px); font-weight:800; line-height:1;
+    color: var(--black);
+  }
+  .cd-label{ font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#444; }
+
+  /* Nav buttons */
+  .bar{
+    max-width:900px; margin:10px auto 0; padding:0 16px;
+  }
+  .btn-row{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;
+  }
+  .pill{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background: #fff; border:1px solid var(--gold-soft); border-radius:999px; padding:10px 12px;
+    cursor:pointer; box-shadow: var(--shadow); font-weight:600;
+  }
+  .pill:hover{ transform: translateY(-1px); }
+  .pill svg{ width:18px; height:18px; }
+
+  /* Modals */
+  .modal{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:16px;
+    background: rgba(0,0,0,.55); z-index:30;
+  }
+  .modal.show{ display:flex; }
+  .card{
+    width:min(860px, 100%); max-height: 86vh; overflow:auto; background:#fff; border-radius:20px; box-shadow: var(--shadow);
+  }
+  .card header{
+    position:sticky; top:0; background:linear-gradient(180deg, #fff, #fffef7);
+    border-bottom:1px solid #eee; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    border-top-left-radius:20px; border-top-right-radius:20px;
+  }
+  .card header h4{ margin:0; font-size:18px; }
+  .card .content{ padding:16px; }
+  .x{ border:none; background:#000; color:#fff; padding:8px 12px; border-radius:999px; cursor:pointer; }
+  .hint{ font-size:12px; opacity:.7; }
+
+  /* Forms */
+  form{ display:grid; gap:12px; }
+  label{ font-weight:600; font-size:14px; }
+  input[type="text"], select, textarea, input[type="number"], input[type="password"]{
+    width:100%; border:1px solid #ddd; border-radius:12px; padding:10px 12px; font-size:14px;
+  }
+  textarea{ min-height:100px; resize:vertical; }
+  .btn{
+    border:none; background: var(--gold); color:#111; font-weight:700; border-radius:12px; padding:12px 14px; cursor:pointer;
+  }
+  .btn:hover{ filter:brightness(0.95); }
+  .success{ background:#f0ffef; border:1px solid #bfe8bf; padding:10px 12px; border-radius:12px; }
+  .error{ background:#fff0f0; border:1px solid #f1b4b4; padding:10px 12px; border-radius:12px; }
+
+  /* Guestbook list */
+  .wishes{ display:grid; gap:12px; margin-top:10px; }
+  .wish{
+    border:1px solid #eee; background:linear-gradient(180deg,#fff,#fffdf6);
+    border-radius:12px; padding:12px; box-shadow: var(--shadow);
+  }
+  .wish .name{ font-weight:700; color:#222; }
+  .wish .ts{ font-size:12px; opacity:.6; }
+
+  /* Location iframe */
+  .map-wrap iframe{ width:100%; height:420px; border:0; border-radius:12px; }
+
+  /* Footer spacer */
+  .spacer{ height: 40px; }
+
+  @media (max-width: 560px){
+    .cd-grid{ grid-template-columns: repeat(2, 1fr); }
+    .btn-row{ grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO VIDEO ===================== -->
+<div class="hero">
+  <video id="heroVideo" playsinline muted preload="metadata">
+    <!-- CHANGE THIS to your video file path -->
+    <source id="videoSrc" src="" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="controls">
+    <button class="ctrl-btn" id="playPause">Play</button>
+    <button class="ctrl-btn" id="muteUnmute">Sound Off</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <h2>Walimatul Urus</h2>
+  <h1>Afiq &amp; Farah</h1>
+  <h3>6 February 2026</h3>
+  <h3>11:00 AM &middot; Masjid Sri Sendayan</h3>
+
+  <!-- ===================== COUNTDOWN ===================== -->
+  <div class="countdown" aria-label="Countdown to event">
+    <div class="cd-grid">
+      <div class="cd-item"><div class="cd-value" id="d">00</div><div class="cd-label">Days</div></div>
+      <div class="cd-item"><div class="cd-value" id="h">00</div><div class="cd-label">Hours</div></div>
+      <div class="cd-item"><div class="cd-value" id="m">00</div><div class="cd-label">Minutes</div></div>
+      <div class="cd-item"><div class="cd-value" id="s">00</div><div class="cd-label">Seconds</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BUTTON BAR ===================== -->
+<div class="bar">
+  <div class="btn-row">
+    <button class="pill" data-open="modalInvite" title="Invitation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+      Invitation
+    </button>
+    <button class="pill" data-open="modalRSVP" title="RSVP">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      RSVP
+    </button>
+    <button class="pill" data-open="modalGuestbook" title="Guestbook">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Guestbook
+    </button>
+    <button class="pill" data-open="modalLocation" title="Location">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Location
+    </button>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<!-- ===================== MODALS ===================== -->
+
+<!-- Invitation -->
+<div class="modal" id="modalInvite" aria-hidden="true">
+  <div class="card">
+    <header>
+      <h4>Invitation</h4>
+      <button class="x" data-close>Close</button>
+    </header>
+    <div class="content">
+      <p>Dengan penuh kesyukuran, kami menjemput anda ke majlis <strong>Walimatul Urus</strong> kami.</p>
+      <p><strong>Afiq &amp; Farah</strong><br>
+         <strong>Tarikh:</strong> 6 Februari 2026 &nbsp; <strong>Masa:</strong> 11:00 pagi<br>
+         <strong>Tempat:</strong> Masjid Sri Sendayan</p>
+      <p>Semoga kehadiran anda memeriahkan majlis kami. Terima kasih. 🙏</p>
+    </div>
+  </div>
+</div>
+
+<!-- RSVP -->
+<div class="modal" id="modalRSVP" aria-hidden="true">
+  <div class="card">
+    <header>
+      <h4>RSVP</h4>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button class="x" id="openAdmin">Admin</button>
+        <button class="x" data-close>Close</button>
+      </div>
+    </header>
+    <div class="content">
+      <form id="rsvpForm">
+        <div>
+          <label for="rsvpName">Name</label>
+          <input id="rsvpName" type="text" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="rsvpAttendance">Attendance</label>
+          <select id="rsvpAttendance" required>
+            <option value="">Please select</option>
+            <option value="Yes">Will attend</option>
+            <option value="No">Unable to attend</option>
+          </select>
+        </div>
+        <div>
+          <label for="rsvpGuests">Number of guests (excluding you)</label>
+          <input id="rsvpGuests" type="number" min="0" step="1" value="0" required>
+        </div>
+        <button class="btn" type="submit">Submit RSVP</button>
+        <div id="rsvpMsg"></div>
+      </form>
+
+      <!-- Admin summary (hidden until PIN OK) -->
+      <div id="adminWrap" style="margin-top:16px; display:none;">
+        <div class="success">
+          <div><strong>Forms Attending:</strong> <span id="statForms">0</span></div>
+          <div><strong>Guests Count (extra seats):</strong> <span id="statGuests">0</span></div>
+          <div><strong>Not Attending:</strong> <span id="statNo">0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Guestbook -->
+<div class="modal" id="modalGuestbook" aria-hidden="true">
+  <div class="card">
+    <header>
+      <h4>Guestbook</h4>
+      <button class="x" data-close>Close</button>
+    </header>
+    <div class="content">
+      <form id="wishForm">
+        <div>
+          <label for="wishName">Name</label>
+          <input id="wishName" type="text" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="wishText">Your wishes</label>
+          <textarea id="wishText" placeholder="Write your message..." required></textarea>
+        </div>
+        <button class="btn" type="submit">Send Wish</button>
+        <div id="wishMsg"></div>
+      </form>
+
+      <div class="wishes" id="wishesList" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Location -->
+<div class="modal" id="modalLocation" aria-hidden="true">
+  <div class="card">
+    <header>
+      <h4>Location — Masjid Sri Sendayan</h4>
+      <button class="x" data-close>Close</button>
+    </header>
+    <div class="content map-wrap">
+      <!-- Simple Google Maps embed -->
+      <iframe
+        src="https://www.google.com/maps?q=Masjid+Sri+Sendayan&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  /************ SETTINGS — CHANGE THESE ************/
+  const VIDEO_SRC  = 'weddingfarafiq.mp4'; // <-- Your vertical MP4 path (same folder recommended)
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwj84JJ-K78fQFzo_TfOuzPfED4PrvOdvCefZst4lMEFKSz7Tc9aFfDxyHijr5VnQnE/exec'; // <-- From Apps Script deploy
+  /*************************************************/
+
+  // Set video src
+  document.getElementById('videoSrc').src = VIDEO_SRC;
+
+  /* ---------- Video controls ---------- */
+  const v = document.getElementById('heroVideo');
+  const btnPlay = document.getElementById('playPause');
+  const btnMute = document.getElementById('muteUnmute');
+
+  // Autoplay policy: start muted & paused until user interacts.
+  btnPlay.addEventListener('click', async () => {
+    if (v.paused) {
+      try { await v.play(); btnPlay.textContent = 'Pause'; }
+      catch(e) { /* user gesture required on some devices */ }
+    } else {
+      v.pause(); btnPlay.textContent = 'Play';
+    }
+  });
+
+  btnMute.addEventListener('click', () => {
+    v.muted = !v.muted;
+    btnMute.textContent = v.muted ? 'Sound Off' : 'Sound On';
+  });
+
+  v.addEventListener('play', () => { btnPlay.textContent = 'Pause'; });
+  v.addEventListener('pause', () => { btnPlay.textContent = 'Play'; });
+
+  /* ---------- Countdown (to Malaysia time) ---------- */
+  // 6 Feb 2026 11:00 AM (Asia/Kuala_Lumpur, GMT+8). We compute by local time;
+  // for consistency, you can change to a fixed UTC if needed.
+  const eventDate = new Date('2026-02-06T11:00:00+08:00').getTime();
+  const dEl = document.getElementById('d'), hEl = document.getElementById('h'),
+        mEl = document.getElementById('m'), sEl = document.getElementById('s');
+
+  function two(n){ return String(n).padStart(2,'0'); }
+  setInterval(() => {
+    const now = Date.now();
+    let diff = Math.max(0, eventDate - now);
+    const d = Math.floor(diff / (1000*60*60*24)); diff -= d*86400000;
+    const h = Math.floor(diff / (1000*60*60)); diff -= h*3600000;
+    const m = Math.floor(diff / (1000*60)); diff -= m*60000;
+    const s = Math.floor(diff / 1000);
+    dEl.textContent = two(d); hEl.textContent = two(h); mEl.textContent = two(m); sEl.textContent = two(s);
+  }, 1000);
+
+  /* ---------- Modal handling ---------- */
+  document.querySelectorAll('[data-open]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById(btn.dataset.open).classList.add('show');
+      document.getElementById(btn.dataset.open).setAttribute('aria-hidden','false');
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.modal').classList.remove('show');
+      btn.closest('.modal').setAttribute('aria-hidden','true');
+    });
+  });
+  document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', (e) => { if (e.target === m) { m.classList.remove('show'); m.setAttribute('aria-hidden','true'); } });
+  });
+
+  /* ---------- Form helpers ---------- */
+  function msg(el, text, type){
+    el.innerHTML = text ? `<div class="${type}">${text}</div>` : '';
+  }
+  function postForm(bodyObj){
+    // Use URL-encoded to avoid preflight CORS
+    return fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: new URLSearchParams(bodyObj)
+    }).then(r => r.json());
+  }
+  function listWishes(){
+    return fetch(`${SCRIPT_URL}?action=listWishes`).then(r => r.json());
+  }
+
+  /* ---------- RSVP ---------- */
+  const rsvpForm = document.getElementById('rsvpForm');
+  const rsvpMsg  = document.getElementById('rsvpMsg');
+
+  rsvpForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg(rsvpMsg, 'Sending...', 'success');
+    const name = document.getElementById('rsvpName').value.trim();
+    const attendance = document.getElementById('rsvpAttendance').value;
+    const guests = document.getElementById('rsvpGuests').value;
+
+    try{
+      const res = await postForm({ action: 'rsvp', name, attendance, guests });
+      if (res.ok){
+        msg(rsvpMsg, 'Thank you! Your RSVP has been recorded.', 'success');
+        rsvpForm.reset();
+      } else {
+        msg(rsvpMsg, res.error || 'Failed to submit.', 'error');
+      }
+    }catch(err){
+      msg(rsvpMsg, 'Network error. Please try again.', 'error');
+    }
+  });
+
+  /* ---------- Admin summary (PIN protected) ---------- */
+  const adminWrap = document.getElementById('adminWrap');
+  document.getElementById('openAdmin').addEventListener('click', async () => {
+    const pin = prompt('Enter admin PIN:');
+    if (!pin) return;
+    try{
+      const res = await postForm({ action: 'summary', pin });
+      if (res.ok && res.stats){
+        adminWrap.style.display = 'block';
+        document.getElementById('statForms').textContent = res.stats.formsAttending;
+        document.getElementById('statGuests').textContent = res.stats.guestsCount;
+        document.getElementById('statNo').textContent    = res.stats.notAttending;
+      } else {
+        alert('Invalid PIN or error.');
+      }
+    }catch(e){
+      alert('Network error.');
+    }
+  });
+
+  /* ---------- Guestbook ---------- */
+  const wishForm = document.getElementById('wishForm');
+  const wishMsg  = document.getElementById('wishMsg');
+  const wishesList = document.getElementById('wishesList');
+
+  wishForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg(wishMsg, 'Sending...', 'success');
+    const name = document.getElementById('wishName').value.trim();
+    const wish = document.getElementById('wishText').value.trim();
+    try{
+      const res = await postForm({ action: 'wish', name, wish });
+      if (res.ok){
+        msg(wishMsg, 'Thank you! Your wish has been added.', 'success');
+        wishForm.reset();
+        await refreshWishes();
+      }else{
+        msg(wishMsg, res.error || 'Failed to submit.', 'error');
+      }
+    }catch(err){
+      msg(wishMsg, 'Network error. Please try again.', 'error');
+    }
+  });
+
+  async function refreshWishes(){
+    try{
+      const res = await listWishes();
+      if (res.ok){
+        wishesList.innerHTML = res.wishes.map(w => {
+          const t = new Date(w.ts).toLocaleString();
+          const name = escapeHtml(w.name || '—');
+          const wish = escapeHtml(w.wish || '');
+          return `
+            <div class="wish">
+              <div class="name">${name}</div>
+              <div class="ts">${t}</div>
+              <div class="text">${wish}</div>
+            </div>`;
+        }).join('');
+      }
+    }catch(e){ /* ignore render errors */ }
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  }
+
+  // Preload wishes on open
+  document.querySelector('[data-open="modalGuestbook"]').addEventListener('click', refreshWishes);
+
+</script>
+</body>
+</html>
