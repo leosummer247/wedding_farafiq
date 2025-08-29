@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Walimatul Urus — Afiq & Farah</title>
 
 <!-- Fonts -->
@@ -55,7 +55,7 @@
   .ctrl-btn svg{ width:18px; height:18px; display:block; }
 
   /* Title */
-  .wrap{ max-width:900px; margin:18px auto 40px; padding:0 16px; }
+  .wrap{ max-width:100%; width: 100%; margin:0 auto; padding:10px; box-sizing: border-box;}
   h1,h2,h3{ margin:8px 0; }
   h1
   {
@@ -69,9 +69,11 @@
   /* Countdown */
   .countdown
   {
-    margin:18px auto 22px; background: var(--white); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding:14px; max-width:1200px; overflow: visible;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+    /*margin:18px auto 22px; background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding:14px; max-width:1200px; overflow: visible;*/
   }
+  .countdown div {flex: 1 1 70px;  text-align: center;}
   .cd-grid{display:flex; gap:6px; justify-content: center; align-items: stretch; flex-wrap: nowrap; overflow-x: auto; padding: 6px;}
   .cd-item
   {
@@ -122,7 +124,9 @@
   input[type="text"], select, textarea, input[type="number"], input[type="password"]
   {width:100%; border:1px solid #ddd; border-radius:12px; padding:10px 12px; font-size:14px;}
   textarea{ min-height:100px; resize:vertical; }
-  .btn{border:none; background: var(--gold); color:#111; font-weight:700; border-radius:12px; padding:12px 14px; cursor:pointer;}
+  /*.btn{border:none; background: var(--gold); color:#111; font-weight:700; border-radius:12px; padding:12px 14px; cursor:pointer;}*/
+  .btn{display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;}
+  .btn button {flex: 1 1 120px; max-width: 150px;}
   .btn:hover{ filter:brightness(0.95); }
   .success{ background:#f0ffef; border:1px solid #bfe8bf; padding:10px 12px; border-radius:12px; }
   .error{ background:#fff0f0; border:1px solid #f1b4b4; padding:10px 12px; border-radius:12px; }
@@ -532,3 +536,4 @@ setSoundIcon(bgAudio.muted);
 </script>
 </body>
 </html>
+
