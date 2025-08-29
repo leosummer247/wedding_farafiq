@@ -70,8 +70,8 @@
   .countdown
   {
     display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-    /*margin:18px auto 22px; background: var(--white); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding:14px; max-width:1200px; overflow: visible;*/
+    margin:18px auto 22px; background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding:14px; max-width:1200px; overflow: visible;
   }
   .countdown div {flex: 1 1 70px;  text-align: center;}
   .cd-grid{display:flex; gap:6px; justify-content: center; align-items: stretch; flex-wrap: nowrap; overflow-x: auto; padding: 6px;}
@@ -146,6 +146,12 @@
 
   /* Footer spacer */
   .spacer{ height: 40px; }
+
+  @media (max-width: 560px)
+  {
+    .cd-grid{ grid-template-columns: repeat(2, 1fr); }
+    .btn-row{ grid-template-columns: repeat(2, 1fr); }
+  }
 
 </style>
 </head>
@@ -536,4 +542,5 @@ setSoundIcon(bgAudio.muted);
 </script>
 </body>
 </html>
+
 
