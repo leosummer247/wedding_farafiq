@@ -209,7 +209,7 @@
   <div class="btn-row">
     <button class="pill" data-open="modalInvite" title="Invitation">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
-      Invitation
+      Jemputan
     </button>
     <button class="pill" data-open="modalRSVP" title="RSVP">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
@@ -221,7 +221,7 @@
     </button>
     <button class="pill" data-open="modalLocation" title="Location">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Location
+      Lokasi
     </button>
   </div>
 </div>
@@ -234,8 +234,8 @@
 <div class="modal" id="modalInvite" aria-hidden="true">
   <div class="card">
     <header>
-      <h4>Invitation</h4>
-      <button class="x" data-close>Close</button>
+      <h4>Jemputan</h4>
+      <button class="x" data-close>X</button>
     </header>
     <div class="content">
       <p>Dengan penuh kesyukuran, kami menjemput anda ke majlis <strong>Walimatul Urus</strong> kami.</p>
@@ -254,28 +254,28 @@
       <h4>RSVP</h4>
       <div style="display:flex; gap:8px; align-items:center;">
         <button class="x" id="openAdmin">Admin</button>
-        <button class="x" data-close>Close</button>
+        <button class="x" data-close>X</button>
       </div>
     </header>
     <div class="content">
       <form id="rsvpForm">
         <div>
-          <label for="rsvpName">Name</label>
+          <label for="rsvpName">Nama</label>
           <input id="rsvpName" type="text" placeholder="Your name" required>
         </div>
         <div>
-          <label for="rsvpAttendance">Attendance</label>
+          <label for="rsvpAttendance">Kehadiran</label>
           <select id="rsvpAttendance" required>
-            <option value="">Please select</option>
-            <option value="Yes">Will attend</option>
-            <option value="No">Unable to attend</option>
+            <option value="">Sila pilih...</option>
+            <option value="Yes">Hadir</option>
+            <option value="No">Tidak hadir</option>
           </select>
         </div>
         <div>
-          <label for="rsvpGuests">Number of guests (excluding you)</label>
+          <label for="rsvpGuests">Tetamu tambahan</label>
           <input id="rsvpGuests" type="number" min="0" step="1" value="0" required>
         </div>
-        <button class="btn" type="submit">Submit RSVP</button>
+        <button class="btn" type="submit">Hantar</button>
         <div id="rsvpMsg"></div>
       </form>
 
@@ -283,7 +283,7 @@
       <div id="adminWrap" style="margin-top:16px; display:none;">
         <div class="success">
           <div><strong>Forms Attending:</strong> <span id="statForms">0</span></div>
-          <div><strong>Guests Count (extra seats):</strong> <span id="statGuests">0</span></div>
+          <div><strong>Guests Count (exc main):</strong> <span id="statGuests">0</span></div>
           <div><strong>Not Attending:</strong> <span id="statNo">0</span></div>
         </div>
       </div>
@@ -296,19 +296,19 @@
   <div class="card">
     <header>
       <h4>Guestbook</h4>
-      <button class="x" data-close>Close</button>
+      <button class="x" data-close>X</button>
     </header>
     <div class="content">
       <form id="wishForm">
         <div>
-          <label for="wishName">Name</label>
+          <label for="wishName">Nama</label>
           <input id="wishName" type="text" placeholder="Your name" required>
         </div>
         <div>
-          <label for="wishText">Your wishes</label>
+          <label for="wishText">Ucapan</label>
           <textarea id="wishText" placeholder="Write your message..." required></textarea>
         </div>
-        <button class="btn" type="submit">Send Wish</button>
+        <button class="btn" type="submit">Hantar</button>
         <div id="wishMsg"></div>
       </form>
 
@@ -321,8 +321,8 @@
 <div class="modal" id="modalLocation" aria-hidden="true">
   <div class="card">
     <header>
-      <h4>Location — Masjid Sri Sendayan</h4>
-      <button class="x" data-close>Close</button>
+      <h4>Lokasi — Masjid Sri Sendayan</h4>
+      <button class="x" data-close>X</button>
     </header>
     <div class="content map-wrap">
       <!-- Simple Google Maps embed -->
@@ -541,6 +541,7 @@ setSoundIcon(bgAudio.muted);
 </script>
 </body>
 </html>
+
 
 
 
