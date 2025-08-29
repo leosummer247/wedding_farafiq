@@ -89,7 +89,7 @@
 
   /* Nav buttons */
   .bar{max-width:900px; margin:10px auto 0; padding:0 16px;}
-  .btn-row{display:flex; grid-template-columns: repeat(4, 1fr); gap:10px;}
+  .btn-row{display:flex; flex-wrap: wrap; grid-template-columns: repeat(4, 1fr); gap:10px;}
   .pill
   {
     display:flex; align-items:center; justify-content:center; gap:8px;
@@ -196,7 +196,7 @@
   <!-- ===================== COUNTDOWN ===================== -->
   <div class="countdown" aria-label="Countdown to event">
     <div class="cd-grid">
-      <div class="cd-item"><div class="cd-value" id="d">00</div><div class="cd-label">Hari</div></div>
+      <div class="cd-item"><div class="cd-value" id="d">00</div><div class="cd-label">Days</div></div>
       <div class="cd-item"><div class="cd-value" id="h">00</div><div class="cd-label">Jam</div></div>
       <div class="cd-item"><div class="cd-value" id="m">00</div><div class="cd-label">Minit</div></div>
       <div class="cd-item"><div class="cd-value" id="s">00</div><div class="cd-label">Saat</div></div>
@@ -541,6 +541,7 @@ setSoundIcon(bgAudio.muted);
 </script>
 </body>
 </html>
+
 
 
 
