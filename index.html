@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  :root{
+  :root
+  {
     --bg: #FFF7D6;           /* light yellow */
     --white: #ffffff;
     --black: #111111;
@@ -20,30 +21,44 @@
     --shadow: 0 10px 30px rgba(0,0,0,.08);
   }
   *{ box-sizing: border-box; }
-  body{
+  body
+  {
     margin:0; background: var(--bg); color: var(--black);
     font-family: Inter, system-ui, Arial, sans-serif; line-height:1.6;
   }
+
   /* Hero Video */
-  .hero{
+  .hero
+  {
     position: relative; width:100%; max-width:900px; margin:0 auto;
     aspect-ratio: 9/16; background:#000; overflow:hidden; border-bottom-left-radius: var(--radius); border-bottom-right-radius: var(--radius);
   }
-  .hero video{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  .hero video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .controls{position:absolute; top:12px; right:12px; bottom:auto; display:flex; gap:10px; z-index:20;}
+  .ctrl-btn
+  {
+    width:44px;
+    height:44px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.45);
+    color: var(--white);
+    cursor:pointer;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+    transition: transform .12s ease, background .12s ease;
   }
-  .controls{
-    position:absolute; left:0; right:0; bottom:0; padding:12px; display:flex; gap:8px; justify-content:center;
-  }
-  .ctrl-btn{
-    border:none; background:var(--overlay); color:#fff; padding:10px 14px; backdrop-filter: blur(4px);
-    border-radius:999px; cursor:pointer; font-weight:600;
-  }
-  .ctrl-btn:hover{ background:rgba(0,0,0,.65); }
+  .ctrl-btn:hover{ transform: translateY(-3px); background: rgba(0,0,0,0.55); }
+  .ctrl-btn svg{ width:18px; height:18px; display:block; }
+
   /* Title */
   .wrap{ max-width:900px; margin:18px auto 40px; padding:0 16px; }
   h1,h2,h3{ margin:8px 0; }
-  h1{
+  h1
+  {
     font-family: "Playfair Display", serif; font-size: clamp(36px, 7vw, 56px); text-align:center;
     letter-spacing:.5px; color: var(--gold);
   }
@@ -52,31 +67,29 @@
   .meta{ text-align:center; opacity:.9; }
 
   /* Countdown */
-  .countdown{
+  .countdown
+  {
     margin:18px auto 22px; background: var(--white); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding:14px; max-width:760px;
+    box-shadow: var(--shadow); padding:14px; max-width:1200px; overflow: visible;
   }
-  .cd-grid{
-    display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;
+  .cd-grid{display:flex; gap:6px; justify-content: center; align-items: stretch; flex-wrap: nowrap; overflow-x: auto; padding: 6px;}
+  .cd-item
+  {
+    flex: 0 0 calc(25% - 10px); min-width: 72px; background: linear-gradient(180deg, #fff, #fff9ef); border: 1px solid var(--gold-soft);
+    border-radius: 12px; padding: 10px; text-align: center; box-sizing: border-box;
   }
-  .cd-item{
-    background: linear-gradient(180deg, #fff, #fff9ef); border: 1px solid var(--gold-soft);
-    border-radius: 16px; padding:14px; text-align:center;
-  }
-  .cd-value{
-    font-family: "Playfair Display", serif; font-size: clamp(28px, 6vw, 42px); font-weight:800; line-height:1;
+  .cd-value
+  {
+    font-family: "Playfair Display", serif; font-size: clamp(18px, 4vw, 36px); font-weight:800; line-height:1;
     color: var(--black);
   }
-  .cd-label{ font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#444; }
+  .cd-label{ font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#444; }
 
   /* Nav buttons */
-  .bar{
-    max-width:900px; margin:10px auto 0; padding:0 16px;
-  }
-  .btn-row{
-    display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;
-  }
-  .pill{
+  .bar{max-width:900px; margin:10px auto 0; padding:0 16px;}
+  .btn-row{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px;}
+  .pill
+  {
     display:flex; align-items:center; justify-content:center; gap:8px;
     background: #fff; border:1px solid var(--gold-soft); border-radius:999px; padding:10px 12px;
     cursor:pointer; box-shadow: var(--shadow); font-weight:600;
@@ -85,15 +98,15 @@
   .pill svg{ width:18px; height:18px; }
 
   /* Modals */
-  .modal{
+  .modal
+  {
     position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:16px;
     background: rgba(0,0,0,.55); z-index:30;
   }
   .modal.show{ display:flex; }
-  .card{
-    width:min(860px, 100%); max-height: 86vh; overflow:auto; background:#fff; border-radius:20px; box-shadow: var(--shadow);
-  }
-  .card header{
+  .card{width:min(860px, 100%); max-height: 86vh; overflow:auto; background:#fff; border-radius:20px; box-shadow: var(--shadow);}
+  .card header
+  {
     position:sticky; top:0; background:linear-gradient(180deg, #fff, #fffef7);
     border-bottom:1px solid #eee; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px;
     border-top-left-radius:20px; border-top-right-radius:20px;
@@ -106,20 +119,18 @@
   /* Forms */
   form{ display:grid; gap:12px; }
   label{ font-weight:600; font-size:14px; }
-  input[type="text"], select, textarea, input[type="number"], input[type="password"]{
-    width:100%; border:1px solid #ddd; border-radius:12px; padding:10px 12px; font-size:14px;
-  }
+  input[type="text"], select, textarea, input[type="number"], input[type="password"]
+  {width:100%; border:1px solid #ddd; border-radius:12px; padding:10px 12px; font-size:14px;}
   textarea{ min-height:100px; resize:vertical; }
-  .btn{
-    border:none; background: var(--gold); color:#111; font-weight:700; border-radius:12px; padding:12px 14px; cursor:pointer;
-  }
+  .btn{border:none; background: var(--gold); color:#111; font-weight:700; border-radius:12px; padding:12px 14px; cursor:pointer;}
   .btn:hover{ filter:brightness(0.95); }
   .success{ background:#f0ffef; border:1px solid #bfe8bf; padding:10px 12px; border-radius:12px; }
   .error{ background:#fff0f0; border:1px solid #f1b4b4; padding:10px 12px; border-radius:12px; }
 
   /* Guestbook list */
   .wishes{ display:grid; gap:12px; margin-top:10px; }
-  .wish{
+  .wish
+  {
     border:1px solid #eee; background:linear-gradient(180deg,#fff,#fffdf6);
     border-radius:12px; padding:12px; box-shadow: var(--shadow);
   }
@@ -132,10 +143,6 @@
   /* Footer spacer */
   .spacer{ height: 40px; }
 
-  @media (max-width: 560px){
-    .cd-grid{ grid-template-columns: repeat(2, 1fr); }
-    .btn-row{ grid-template-columns: repeat(2, 1fr); }
-  }
 </style>
 </head>
 <body>
@@ -144,14 +151,31 @@
 <div class="hero">
   <video id="heroVideo" playsinline muted preload="metadata">
     <!-- CHANGE THIS to your video file path -->
-    <source id="videoSrc" src="" type="video/mp4">
+    <source id="videoSrc" src="weddingfarafiq.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <div class="controls">
-    <button class="ctrl-btn" id="playPause">Play</button>
-    <button class="ctrl-btn" id="muteUnmute">Sound Off</button>
+  <audio id="bgAudio" loop autoplay>
+    <source src="weddingst.mp3" type="audio/mpeg">
+  </audio>
+
+    <div class="controls" aria-hidden="false">
+    <!-- Mute / Unmute -->
+    <button class="ctrl-btn" id="muteUnmute" aria-label="Toggle sound" title="Toggle sound">
+      <!-- initial SVG will be set by JS, keep an inline fallback for very old browsers -->
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+      </svg>
+    </button>
+
+    <!-- Play / Pause -->
+    <button class="ctrl-btn" id="playPause" aria-label="Play video" title="Play/Pause">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+    </button>
   </div>
+
 </div>
 
 <div class="wrap">
@@ -310,28 +334,56 @@
   // Set video src
   document.getElementById('videoSrc').src = VIDEO_SRC;
 
-  /* ---------- Video controls ---------- */
-  const v = document.getElementById('heroVideo');
-  const btnPlay = document.getElementById('playPause');
-  const btnMute = document.getElementById('muteUnmute');
+  // ---------- Video + Audio Controls ----------
+const v = document.getElementById('heroVideo');
+const bgAudio = document.getElementById('bgAudio');
+const btnPlay = document.getElementById('playPause');
+const btnMute = document.getElementById('muteUnmute');
 
-  // Autoplay policy: start muted & paused until user interacts.
-  btnPlay.addEventListener('click', async () => {
-    if (v.paused) {
-      try { await v.play(); btnPlay.textContent = 'Pause'; }
-      catch(e) { /* user gesture required on some devices */ }
-    } else {
-      v.pause(); btnPlay.textContent = 'Play';
-    }
-  });
+// SVG icons
+const svgPlay = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+  fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+const svgPause = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+  fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+const svgSoundOn = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+  fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3z"/></svg>`;
+const svgSoundOff = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+  fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12l5.5 5.5-1.5 1.5L15 13.5V12l5.5-5.5 1.5 1.5L16.5 12zM7 9H3v6h4l5 5V4L7 9z"/></svg>`;
 
-  btnMute.addEventListener('click', () => {
-    v.muted = !v.muted;
-    btnMute.textContent = v.muted ? 'Sound Off' : 'Sound On';
-  });
+// Helpers
+function setPlayIcon(isPlaying){
+  btnPlay.innerHTML = isPlaying ? svgPause : svgPlay;
+}
+function setSoundIcon(isMuted){
+  btnMute.innerHTML = isMuted ? svgSoundOff : svgSoundOn;
+}
 
-  v.addEventListener('play', () => { btnPlay.textContent = 'Pause'; });
-  v.addEventListener('pause', () => { btnPlay.textContent = 'Play'; });
+// First user click should start BOTH video and audio
+btnPlay.addEventListener('click', async () => {
+  if (v.paused) {
+    try { 
+      await v.play(); 
+      if (bgAudio.paused) await bgAudio.play(); // ensure audio starts
+      setPlayIcon(true);
+    } catch(e) { console.log(e); }
+  } else {
+    v.pause(); 
+    setPlayIcon(false);
+  }
+});
+
+// Mute only controls the audio
+btnMute.addEventListener('click', () => {
+  bgAudio.muted = !bgAudio.muted;
+  setSoundIcon(bgAudio.muted);
+});
+
+// Keep icons in sync
+v.addEventListener('play', () => setPlayIcon(true));
+v.addEventListener('pause', () => setPlayIcon(false));
+setPlayIcon(!v.paused);
+setSoundIcon(bgAudio.muted);
+
 
   /* ---------- Countdown (to Malaysia time) ---------- */
   // 6 Feb 2026 11:00 AM (Asia/Kuala_Lumpur, GMT+8). We compute by local time;
@@ -457,13 +509,12 @@
       const res = await listWishes();
       if (res.ok){
         wishesList.innerHTML = res.wishes.map(w => {
-          const t = new Date(w.ts).toLocaleString();
+          /*const t = new Date(w.ts).toLocaleString(); <div class="ts">${t}</div>*/
           const name = escapeHtml(w.name || '—');
           const wish = escapeHtml(w.wish || '');
           return `
             <div class="wish">
               <div class="name">${name}</div>
-              <div class="ts">${t}</div>
               <div class="text">${wish}</div>
             </div>`;
         }).join('');
