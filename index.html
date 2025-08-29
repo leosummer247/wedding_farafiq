@@ -149,6 +149,7 @@
 
   @media (max-width: 400px){
   .btn-row{ grid-template-columns: repeat(2, 1fr); }}
+  .countdown div {flex: 1 1 45%;}
 
 </style>
 </head>
@@ -194,7 +195,7 @@
   <!-- ===================== COUNTDOWN ===================== -->
   <div class="countdown" aria-label="Countdown to event">
     <div class="cd-grid">
-      <div class="cd-item"><div class="cd-value" id="d">00</div><div class="cd-label">Hari</div></div>
+      <div class="cd-item"><div class="cd-value" id="d">00</div><div class="cd-label">Days</div></div>
       <div class="cd-item"><div class="cd-value" id="h">00</div><div class="cd-label">Jam</div></div>
       <div class="cd-item"><div class="cd-value" id="m">00</div><div class="cd-label">Minit</div></div>
       <div class="cd-item"><div class="cd-value" id="s">00</div><div class="cd-label">Saat</div></div>
@@ -539,6 +540,7 @@ setSoundIcon(bgAudio.muted);
 </script>
 </body>
 </html>
+
 
 
 
